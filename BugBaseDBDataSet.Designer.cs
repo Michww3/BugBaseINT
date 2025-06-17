@@ -291,7 +291,7 @@ namespace BugBase {
             
             private global::System.Data.DataColumn columnIsComplited;
             
-            private global::System.Data.DataColumn columnEmploye_Id;
+            private global::System.Data.DataColumn columnEmployeId;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -376,9 +376,9 @@ namespace BugBase {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Employe_IdColumn {
+            public global::System.Data.DataColumn EmployeIdColumn {
                 get {
-                    return this.columnEmploye_Id;
+                    return this.columnEmployeId;
                 }
             }
             
@@ -419,7 +419,7 @@ namespace BugBase {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BugsRow AddBugsRow(string Name, string Description, string Priority, System.DateTime EndDate, bool IsComplited, int Employe_Id) {
+            public BugsRow AddBugsRow(string Name, string Description, string Priority, System.DateTime EndDate, bool IsComplited, int EmployeId) {
                 BugsRow rowBugsRow = ((BugsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -428,7 +428,7 @@ namespace BugBase {
                         Priority,
                         EndDate,
                         IsComplited,
-                        Employe_Id};
+                        EmployeId};
                 rowBugsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBugsRow);
                 return rowBugsRow;
@@ -464,7 +464,7 @@ namespace BugBase {
                 this.columnPriority = base.Columns["Priority"];
                 this.columnEndDate = base.Columns["EndDate"];
                 this.columnIsComplited = base.Columns["IsComplited"];
-                this.columnEmploye_Id = base.Columns["Employe_Id"];
+                this.columnEmployeId = base.Columns["EmployeId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -482,8 +482,8 @@ namespace BugBase {
                 base.Columns.Add(this.columnEndDate);
                 this.columnIsComplited = new global::System.Data.DataColumn("IsComplited", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsComplited);
-                this.columnEmploye_Id = new global::System.Data.DataColumn("Employe_Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEmploye_Id);
+                this.columnEmployeId = new global::System.Data.DataColumn("EmployeId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmployeId);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -497,6 +497,7 @@ namespace BugBase {
                 this.columnPriority.MaxLength = 2147483647;
                 this.columnEndDate.AllowDBNull = false;
                 this.columnIsComplited.AllowDBNull = false;
+                this.columnEmployeId.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -720,17 +721,12 @@ namespace BugBase {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int Employe_Id {
+            public int EmployeId {
                 get {
-                    try {
-                        return ((int)(this[this.tableBugs.Employe_IdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Employe_Id\' in table \'Bugs\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableBugs.EmployeIdColumn]));
                 }
                 set {
-                    this[this.tableBugs.Employe_IdColumn] = value;
+                    this[this.tableBugs.EmployeIdColumn] = value;
                 }
             }
             
@@ -768,18 +764,6 @@ namespace BugBase {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetPriorityNull() {
                 this[this.tableBugs.PriorityColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsEmploye_IdNull() {
-                return this.IsNull(this.tableBugs.Employe_IdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetEmploye_IdNull() {
-                this[this.tableBugs.Employe_IdColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -948,46 +932,44 @@ namespace BugBase.BugBaseDBDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Priority", "Priority");
             tableMapping.ColumnMappings.Add("EndDate", "EndDate");
             tableMapping.ColumnMappings.Add("IsComplited", "IsComplited");
-            tableMapping.ColumnMappings.Add("Employe_Id", "Employe_Id");
+            tableMapping.ColumnMappings.Add("EmployeId", "EmployeId");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Bugs] WHERE (([Id] = @Original_Id) AND ([EndDate] = @Original_" +
-                "EndDate) AND ([IsComplited] = @Original_IsComplited) AND ((@IsNull_Employe_Id = " +
-                "1 AND [Employe_Id] IS NULL) OR ([Employe_Id] = @Original_Employe_Id)))";
+                "EndDate) AND ([IsComplited] = @Original_IsComplited) AND ([EmployeId] = @Origina" +
+                "l_EmployeId))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EndDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsComplited", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsComplited", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Employe_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Employe_Id", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Employe_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Employe_Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Bugs] ([Name], [Description], [Priority], [EndDate], [IsComplited], [Employe_Id]) VALUES (@Name, @Description, @Priority, @EndDate, @IsComplited, @Employe_Id);
-SELECT Id, Name, Description, Priority, EndDate, IsComplited, Employe_Id FROM Bugs WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Bugs] ([Name], [Description], [Priority], [EndDate], [IsComplited], [EmployeId]) VALUES (@Name, @Description, @Priority, @EndDate, @IsComplited, @EmployeId);
+SELECT Id, Name, Description, Priority, EndDate, IsComplited, EmployeId FROM Bugs WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Priority", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Priority", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EndDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsComplited", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsComplited", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Employe_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Employe_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Bugs] SET [Name] = @Name, [Description] = @Description, [Priority] = @Priority, [EndDate] = @EndDate, [IsComplited] = @IsComplited, [Employe_Id] = @Employe_Id WHERE (([Id] = @Original_Id) AND ([EndDate] = @Original_EndDate) AND ([IsComplited] = @Original_IsComplited) AND ((@IsNull_Employe_Id = 1 AND [Employe_Id] IS NULL) OR ([Employe_Id] = @Original_Employe_Id)));
-SELECT Id, Name, Description, Priority, EndDate, IsComplited, Employe_Id FROM Bugs WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Bugs] SET [Name] = @Name, [Description] = @Description, [Priority] = @Priority, [EndDate] = @EndDate, [IsComplited] = @IsComplited, [EmployeId] = @EmployeId WHERE (([Id] = @Original_Id) AND ([EndDate] = @Original_EndDate) AND ([IsComplited] = @Original_IsComplited) AND ([EmployeId] = @Original_EmployeId));
+SELECT Id, Name, Description, Priority, EndDate, IsComplited, EmployeId FROM Bugs WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Priority", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Priority", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EndDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsComplited", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsComplited", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Employe_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Employe_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EndDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsComplited", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsComplited", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Employe_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Employe_Id", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Employe_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Employe_Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -1004,8 +986,8 @@ SELECT Id, Name, Description, Priority, EndDate, IsComplited, Employe_Id FROM Bu
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, Name, Description, Priority, EndDate, IsComplited, Employe_Id FROM dbo" +
-                ".Bugs";
+            this._commandCollection[0].CommandText = "SELECT Id, Name, Description, Priority, EndDate, IsComplited, EmployeId FROM dbo." +
+                "Bugs";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1066,18 +1048,11 @@ SELECT Id, Name, Description, Priority, EndDate, IsComplited, Employe_Id FROM Bu
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, System.DateTime Original_EndDate, bool Original_IsComplited, global::System.Nullable<int> Original_Employe_Id) {
+        public virtual int Delete(int Original_Id, System.DateTime Original_EndDate, bool Original_IsComplited, int Original_EmployeId) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((System.DateTime)(Original_EndDate));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((bool)(Original_IsComplited));
-            if ((Original_Employe_Id.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_Employe_Id.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_EmployeId));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1098,7 +1073,7 @@ SELECT Id, Name, Description, Priority, EndDate, IsComplited, Employe_Id FROM Bu
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Name, string Description, string Priority, System.DateTime EndDate, bool IsComplited, global::System.Nullable<int> Employe_Id) {
+        public virtual int Insert(string Name, string Description, string Priority, System.DateTime EndDate, bool IsComplited, int EmployeId) {
             if ((Name == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1119,12 +1094,7 @@ SELECT Id, Name, Description, Priority, EndDate, IsComplited, Employe_Id FROM Bu
             }
             this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(EndDate));
             this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(IsComplited));
-            if ((Employe_Id.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((int)(Employe_Id.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(EmployeId));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1145,7 +1115,7 @@ SELECT Id, Name, Description, Priority, EndDate, IsComplited, Employe_Id FROM Bu
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, string Description, string Priority, System.DateTime EndDate, bool IsComplited, global::System.Nullable<int> Employe_Id, int Original_Id, System.DateTime Original_EndDate, bool Original_IsComplited, global::System.Nullable<int> Original_Employe_Id, int Id) {
+        public virtual int Update(string Name, string Description, string Priority, System.DateTime EndDate, bool IsComplited, int EmployeId, int Original_Id, System.DateTime Original_EndDate, bool Original_IsComplited, int Original_EmployeId, int Id) {
             if ((Name == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1166,24 +1136,12 @@ SELECT Id, Name, Description, Priority, EndDate, IsComplited, Employe_Id FROM Bu
             }
             this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(EndDate));
             this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(IsComplited));
-            if ((Employe_Id.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Employe_Id.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(EmployeId));
             this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Id));
             this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_EndDate));
             this.Adapter.UpdateCommand.Parameters[8].Value = ((bool)(Original_IsComplited));
-            if ((Original_Employe_Id.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_Employe_Id.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Id));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_EmployeId));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1204,8 +1162,8 @@ SELECT Id, Name, Description, Priority, EndDate, IsComplited, Employe_Id FROM Bu
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, string Description, string Priority, System.DateTime EndDate, bool IsComplited, global::System.Nullable<int> Employe_Id, int Original_Id, System.DateTime Original_EndDate, bool Original_IsComplited, global::System.Nullable<int> Original_Employe_Id) {
-            return this.Update(Name, Description, Priority, EndDate, IsComplited, Employe_Id, Original_Id, Original_EndDate, Original_IsComplited, Original_Employe_Id, Original_Id);
+        public virtual int Update(string Name, string Description, string Priority, System.DateTime EndDate, bool IsComplited, int EmployeId, int Original_Id, System.DateTime Original_EndDate, bool Original_IsComplited, int Original_EmployeId) {
+            return this.Update(Name, Description, Priority, EndDate, IsComplited, EmployeId, Original_Id, Original_EndDate, Original_IsComplited, Original_EmployeId, Original_Id);
         }
     }
     

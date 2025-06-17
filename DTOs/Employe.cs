@@ -8,12 +8,13 @@ namespace BugBase.DTOs
         public string Name { get; set; }
         public string Profession { get; set; }
 
-        public List<Bug> bugs { get; set; }
+        public List<Bug> Bugs { get; set; } = new List<Bug>();
 
         public Employe(string name, string profession) 
         {
             Name = name;
             Profession = profession;
         }
+        public Employe() { }
     }
 }

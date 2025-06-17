@@ -1,5 +1,4 @@
 ﻿using BugBase.DTOs;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 
@@ -21,7 +20,6 @@ namespace BugBase.Helpers
                 new Employe("Mihail", "QA"),
                 new Employe("Egor", "QA")
             };
-
             context.Employes.AddRange(employes);
             base.Seed(context);
         }

@@ -38,6 +38,13 @@
             this.EndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.StatusCheckBox = new System.Windows.Forms.CheckBox();
             this.BugsDataGrid = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priorityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isComplitedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.employeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bugsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bugBaseDBDataSet = new BugBase.BugBaseDBDataSet();
             this.SaveButton = new System.Windows.Forms.Button();
@@ -47,26 +54,26 @@
             this.EditButton = new System.Windows.Forms.Button();
             this.PriorityLabel = new System.Windows.Forms.Label();
             this.PriorityComboBox = new System.Windows.Forms.ComboBox();
-            this.bugsTableAdapter = new BugBase.BugBaseDBDataSetTableAdapters.BugsTableAdapter();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.EmployesDataGrid = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.professionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bugBaseDBDataSet1 = new BugBase.BugBaseDBDataSet1();
-            this.employesTableAdapter = new BugBase.BugBaseDBDataSet1TableAdapters.EmployesTableAdapter();
             this.EmployeLabel = new System.Windows.Forms.Label();
             this.EmployeIdTextBox = new System.Windows.Forms.TextBox();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priorityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.endDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isComplitedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.employeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BugIdDeleteLabel = new System.Windows.Forms.Label();
+            this.IdTextBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.BugIdEditLabel = new System.Windows.Forms.Label();
+            this.BugEditIdTextBox = new System.Windows.Forms.TextBox();
+            this.bugsTableAdapter = new BugBase.BugBaseDBDataSetTableAdapters.BugsTableAdapter();
+            this.employesTableAdapter = new BugBase.BugBaseDBDataSet1TableAdapters.EmployesTableAdapter();
+            this.SaveEditButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BugsDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugBaseDBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EmployesDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugBaseDBDataSet1)).BeginInit();
             this.SuspendLayout();
@@ -144,6 +151,7 @@
             this.BugsDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.BugsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BugsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.descriptionDataGridViewTextBoxColumn,
             this.priorityDataGridViewTextBoxColumn,
@@ -159,6 +167,55 @@
             this.BugsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.BugsDataGrid.Size = new System.Drawing.Size(789, 1017);
             this.BugsDataGrid.TabIndex = 8;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // priorityDataGridViewTextBoxColumn
+            // 
+            this.priorityDataGridViewTextBoxColumn.DataPropertyName = "Priority";
+            this.priorityDataGridViewTextBoxColumn.HeaderText = "Priority";
+            this.priorityDataGridViewTextBoxColumn.Name = "priorityDataGridViewTextBoxColumn";
+            this.priorityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // endDateDataGridViewTextBoxColumn
+            // 
+            this.endDateDataGridViewTextBoxColumn.DataPropertyName = "EndDate";
+            this.endDateDataGridViewTextBoxColumn.HeaderText = "EndDate";
+            this.endDateDataGridViewTextBoxColumn.Name = "endDateDataGridViewTextBoxColumn";
+            this.endDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // isComplitedDataGridViewCheckBoxColumn
+            // 
+            this.isComplitedDataGridViewCheckBoxColumn.DataPropertyName = "IsComplited";
+            this.isComplitedDataGridViewCheckBoxColumn.HeaderText = "IsComplited";
+            this.isComplitedDataGridViewCheckBoxColumn.Name = "isComplitedDataGridViewCheckBoxColumn";
+            this.isComplitedDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // employeIdDataGridViewTextBoxColumn
+            // 
+            this.employeIdDataGridViewTextBoxColumn.DataPropertyName = "EmployeId";
+            this.employeIdDataGridViewTextBoxColumn.HeaderText = "EmployeId";
+            this.employeIdDataGridViewTextBoxColumn.Name = "employeIdDataGridViewTextBoxColumn";
+            this.employeIdDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // bugsBindingSource
             // 
@@ -201,21 +258,23 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(1041, 578);
+            this.DeleteButton.Location = new System.Drawing.Point(810, 694);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 12;
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // EditButton
             // 
-            this.EditButton.Location = new System.Drawing.Point(1122, 578);
+            this.EditButton.Location = new System.Drawing.Point(1018, 694);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(75, 23);
             this.EditButton.TabIndex = 13;
             this.EditButton.Text = "Edit";
             this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // PriorityLabel
             // 
@@ -238,26 +297,22 @@
             this.PriorityComboBox.Size = new System.Drawing.Size(121, 21);
             this.PriorityComboBox.TabIndex = 15;
             // 
-            // bugsTableAdapter
+            // EmployesDataGrid
             // 
-            this.bugsTableAdapter.ClearBeforeFill = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.EmployesDataGrid.AutoGenerateColumns = false;
+            this.EmployesDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.EmployesDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.EmployesDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn1,
             this.nameDataGridViewTextBoxColumn1,
             this.professionDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.employesBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView1.Location = new System.Drawing.Point(1260, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(465, 1017);
-            this.dataGridView1.TabIndex = 16;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.EmployesDataGrid.DataSource = this.employesBindingSource;
+            this.EmployesDataGrid.Dock = System.Windows.Forms.DockStyle.Right;
+            this.EmployesDataGrid.Location = new System.Drawing.Point(1260, 0);
+            this.EmployesDataGrid.Name = "EmployesDataGrid";
+            this.EmployesDataGrid.Size = new System.Drawing.Size(465, 1017);
+            this.EmployesDataGrid.TabIndex = 16;
+            this.EmployesDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EmployesDataGrid_CellClick);
             // 
             // idDataGridViewTextBoxColumn1
             // 
@@ -288,76 +343,93 @@
             this.bugBaseDBDataSet1.DataSetName = "BugBaseDBDataSet1";
             this.bugBaseDBDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // employesTableAdapter
-            // 
-            this.employesTableAdapter.ClearBeforeFill = true;
-            // 
             // EmployeLabel
             // 
             this.EmployeLabel.AutoSize = true;
             this.EmployeLabel.Location = new System.Drawing.Point(794, 486);
             this.EmployeLabel.Name = "EmployeLabel";
-            this.EmployeLabel.Size = new System.Drawing.Size(102, 13);
+            this.EmployeLabel.Size = new System.Drawing.Size(59, 13);
             this.EmployeLabel.TabIndex = 17;
-            this.EmployeLabel.Text = "Add employe from id";
+            this.EmployeLabel.Text = "Employe Id";
             // 
             // EmployeIdTextBox
             // 
-            this.EmployeIdTextBox.Location = new System.Drawing.Point(797, 518);
+            this.EmployeIdTextBox.Location = new System.Drawing.Point(794, 511);
             this.EmployeIdTextBox.Name = "EmployeIdTextBox";
             this.EmployeIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.EmployeIdTextBox.TabIndex = 18;
             // 
-            // nameDataGridViewTextBoxColumn
+            // BugIdDeleteLabel
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.BugIdDeleteLabel.AutoSize = true;
+            this.BugIdDeleteLabel.Location = new System.Drawing.Point(798, 627);
+            this.BugIdDeleteLabel.Name = "BugIdDeleteLabel";
+            this.BugIdDeleteLabel.Size = new System.Drawing.Size(108, 13);
+            this.BugIdDeleteLabel.TabIndex = 19;
+            this.BugIdDeleteLabel.Text = "Enter bug id to delete";
             // 
-            // descriptionDataGridViewTextBoxColumn
+            // IdTextBox
             // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.IdTextBox.Location = new System.Drawing.Point(801, 657);
+            this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.IdTextBox.TabIndex = 20;
             // 
-            // priorityDataGridViewTextBoxColumn
+            // button1
             // 
-            this.priorityDataGridViewTextBoxColumn.DataPropertyName = "Priority";
-            this.priorityDataGridViewTextBoxColumn.HeaderText = "Priority";
-            this.priorityDataGridViewTextBoxColumn.Name = "priorityDataGridViewTextBoxColumn";
-            this.priorityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
             // 
-            // endDateDataGridViewTextBoxColumn
+            // BugIdEditLabel
             // 
-            this.endDateDataGridViewTextBoxColumn.DataPropertyName = "EndDate";
-            this.endDateDataGridViewTextBoxColumn.HeaderText = "EndDate";
-            this.endDateDataGridViewTextBoxColumn.Name = "endDateDataGridViewTextBoxColumn";
-            this.endDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.BugIdEditLabel.AutoSize = true;
+            this.BugIdEditLabel.Location = new System.Drawing.Point(1038, 627);
+            this.BugIdEditLabel.Name = "BugIdEditLabel";
+            this.BugIdEditLabel.Size = new System.Drawing.Size(97, 13);
+            this.BugIdEditLabel.TabIndex = 21;
+            this.BugIdEditLabel.Text = "Enter bug Id to edit";
             // 
-            // isComplitedDataGridViewCheckBoxColumn
+            // BugEditIdTextBox
             // 
-            this.isComplitedDataGridViewCheckBoxColumn.DataPropertyName = "IsComplited";
-            this.isComplitedDataGridViewCheckBoxColumn.HeaderText = "IsComplited";
-            this.isComplitedDataGridViewCheckBoxColumn.Name = "isComplitedDataGridViewCheckBoxColumn";
-            this.isComplitedDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.BugEditIdTextBox.Location = new System.Drawing.Point(1035, 657);
+            this.BugEditIdTextBox.Name = "BugEditIdTextBox";
+            this.BugEditIdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.BugEditIdTextBox.TabIndex = 22;
             // 
-            // employeIdDataGridViewTextBoxColumn
+            // bugsTableAdapter
             // 
-            this.employeIdDataGridViewTextBoxColumn.DataPropertyName = "Employe_Id";
-            this.employeIdDataGridViewTextBoxColumn.HeaderText = "Employe_Id";
-            this.employeIdDataGridViewTextBoxColumn.Name = "employeIdDataGridViewTextBoxColumn";
-            this.employeIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.bugsTableAdapter.ClearBeforeFill = true;
+            // 
+            // employesTableAdapter
+            // 
+            this.employesTableAdapter.ClearBeforeFill = true;
+            // 
+            // SaveEditButton
+            // 
+            this.SaveEditButton.Location = new System.Drawing.Point(1099, 694);
+            this.SaveEditButton.Name = "SaveEditButton";
+            this.SaveEditButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveEditButton.TabIndex = 23;
+            this.SaveEditButton.Text = "Save";
+            this.SaveEditButton.UseVisualStyleBackColor = true;
+            this.SaveEditButton.Click += new System.EventHandler(this.SaveEditButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1725, 1017);
+            this.Controls.Add(this.SaveEditButton);
+            this.Controls.Add(this.BugEditIdTextBox);
+            this.Controls.Add(this.BugIdEditLabel);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.IdTextBox);
+            this.Controls.Add(this.BugIdDeleteLabel);
             this.Controls.Add(this.EmployeIdTextBox);
             this.Controls.Add(this.EmployeLabel);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.EmployesDataGrid);
             this.Controls.Add(this.PriorityComboBox);
             this.Controls.Add(this.PriorityLabel);
             this.Controls.Add(this.EditButton);
@@ -381,7 +453,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.BugsDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugBaseDBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EmployesDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugBaseDBDataSet1)).EndInit();
             this.ResumeLayout(false);
@@ -407,24 +479,31 @@
         private System.Windows.Forms.Button EditButton;
         private System.Windows.Forms.Label PriorityLabel;
         private System.Windows.Forms.ComboBox PriorityComboBox;
+        private System.Windows.Forms.DataGridView EmployesDataGrid;
+        private System.Windows.Forms.Label EmployeLabel;
+        private System.Windows.Forms.TextBox EmployeIdTextBox;
+        private System.Windows.Forms.Label BugIdDeleteLabel;
+        private System.Windows.Forms.TextBox IdTextBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label BugIdEditLabel;
+        private System.Windows.Forms.TextBox BugEditIdTextBox;
         private BugBaseDBDataSet bugBaseDBDataSet;
         private System.Windows.Forms.BindingSource bugsBindingSource;
         private BugBaseDBDataSetTableAdapters.BugsTableAdapter bugsTableAdapter;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private BugBaseDBDataSet1 bugBaseDBDataSet1;
-        private System.Windows.Forms.BindingSource employesBindingSource;
-        private BugBaseDBDataSet1TableAdapters.EmployesTableAdapter employesTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn professionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label EmployeLabel;
-        private System.Windows.Forms.TextBox EmployeIdTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priorityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn endDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isComplitedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn employeIdDataGridViewTextBoxColumn;
+        private BugBaseDBDataSet1 bugBaseDBDataSet1;
+        private System.Windows.Forms.BindingSource employesBindingSource;
+        private BugBaseDBDataSet1TableAdapters.EmployesTableAdapter employesTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn professionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button SaveEditButton;
     }
 }
 
