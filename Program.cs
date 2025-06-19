@@ -1,7 +1,6 @@
 ﻿using BugBase.Helpers;
 using System;
 using System.Data.Entity;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace BugBase
@@ -14,7 +13,13 @@ namespace BugBase
         [STAThread]
         static void Main()
         {
+            // 👉 Set your custom initializer here
+            //Database.SetInitializer(new DbInitilize());
 
+            //using (var context = new AppDbContext())
+            //{
+            //    context.Database.Initialize(force: true);
+            //}
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

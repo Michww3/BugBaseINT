@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BugBase.DTOs
 {
@@ -13,6 +15,8 @@ namespace BugBase.DTOs
         
         public int EmployeId { get; set; }
         public Employe Employe { get; set; }
+
+        public string Base64Image { get; set; }
 
         public Bug(string name, string description, string priority, DateTime endDate, bool isComplited, int employeId)
         {

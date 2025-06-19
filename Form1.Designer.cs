@@ -48,7 +48,7 @@
             this.bugsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bugBaseDBDataSet = new BugBase.BugBaseDBDataSet();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.LoadButton = new System.Windows.Forms.Button();
+            this.LoadImageButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
@@ -63,13 +63,14 @@
             this.EmployeLabel = new System.Windows.Forms.Label();
             this.EmployeIdTextBox = new System.Windows.Forms.TextBox();
             this.BugIdDeleteLabel = new System.Windows.Forms.Label();
-            this.IdTextBox = new System.Windows.Forms.TextBox();
+            this.DeleteIdTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.BugIdEditLabel = new System.Windows.Forms.Label();
-            this.BugEditIdTextBox = new System.Windows.Forms.TextBox();
+            this.EditIdTextBox = new System.Windows.Forms.TextBox();
             this.bugsTableAdapter = new BugBase.BugBaseDBDataSetTableAdapters.BugsTableAdapter();
             this.employesTableAdapter = new BugBase.BugBaseDBDataSet1TableAdapters.EmployesTableAdapter();
             this.SaveEditButton = new System.Windows.Forms.Button();
+            this.ImageSelectLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BugsDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugBaseDBDataSet)).BeginInit();
@@ -167,6 +168,7 @@
             this.BugsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.BugsDataGrid.Size = new System.Drawing.Size(789, 1017);
             this.BugsDataGrid.TabIndex = 8;
+            this.BugsDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BugsDataGrid_CellClick);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -229,28 +231,29 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(798, 578);
+            this.SaveButton.Location = new System.Drawing.Point(798, 618);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.Size = new System.Drawing.Size(100, 49);
             this.SaveButton.TabIndex = 9;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // LoadButton
+            // LoadImageButton
             // 
-            this.LoadButton.Location = new System.Drawing.Point(879, 578);
-            this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(75, 23);
-            this.LoadButton.TabIndex = 10;
-            this.LoadButton.Text = "Load";
-            this.LoadButton.UseVisualStyleBackColor = true;
+            this.LoadImageButton.Location = new System.Drawing.Point(795, 554);
+            this.LoadImageButton.Name = "LoadImageButton";
+            this.LoadImageButton.Size = new System.Drawing.Size(106, 23);
+            this.LoadImageButton.TabIndex = 10;
+            this.LoadImageButton.Text = "Load image";
+            this.LoadImageButton.UseVisualStyleBackColor = true;
+            this.LoadImageButton.Click += new System.EventHandler(this.LoadImageButton_Click);
             // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(960, 578);
+            this.ClearButton.Location = new System.Drawing.Point(922, 618);
             this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(75, 23);
+            this.ClearButton.Size = new System.Drawing.Size(82, 49);
             this.ClearButton.TabIndex = 11;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
@@ -258,7 +261,7 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(810, 694);
+            this.DeleteButton.Location = new System.Drawing.Point(819, 741);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 12;
@@ -268,7 +271,7 @@
             // 
             // EditButton
             // 
-            this.EditButton.Location = new System.Drawing.Point(1018, 694);
+            this.EditButton.Location = new System.Drawing.Point(1012, 741);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(75, 23);
             this.EditButton.TabIndex = 13;
@@ -362,18 +365,18 @@
             // BugIdDeleteLabel
             // 
             this.BugIdDeleteLabel.AutoSize = true;
-            this.BugIdDeleteLabel.Location = new System.Drawing.Point(798, 627);
+            this.BugIdDeleteLabel.Location = new System.Drawing.Point(800, 680);
             this.BugIdDeleteLabel.Name = "BugIdDeleteLabel";
             this.BugIdDeleteLabel.Size = new System.Drawing.Size(108, 13);
             this.BugIdDeleteLabel.TabIndex = 19;
             this.BugIdDeleteLabel.Text = "Enter bug id to delete";
             // 
-            // IdTextBox
+            // DeleteIdTextBox
             // 
-            this.IdTextBox.Location = new System.Drawing.Point(801, 657);
-            this.IdTextBox.Name = "IdTextBox";
-            this.IdTextBox.Size = new System.Drawing.Size(100, 20);
-            this.IdTextBox.TabIndex = 20;
+            this.DeleteIdTextBox.Location = new System.Drawing.Point(803, 706);
+            this.DeleteIdTextBox.Name = "DeleteIdTextBox";
+            this.DeleteIdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.DeleteIdTextBox.TabIndex = 20;
             // 
             // button1
             // 
@@ -385,18 +388,18 @@
             // BugIdEditLabel
             // 
             this.BugIdEditLabel.AutoSize = true;
-            this.BugIdEditLabel.Location = new System.Drawing.Point(1038, 627);
+            this.BugIdEditLabel.Location = new System.Drawing.Point(1038, 680);
             this.BugIdEditLabel.Name = "BugIdEditLabel";
             this.BugIdEditLabel.Size = new System.Drawing.Size(97, 13);
             this.BugIdEditLabel.TabIndex = 21;
             this.BugIdEditLabel.Text = "Enter bug Id to edit";
             // 
-            // BugEditIdTextBox
+            // EditIdTextBox
             // 
-            this.BugEditIdTextBox.Location = new System.Drawing.Point(1035, 657);
-            this.BugEditIdTextBox.Name = "BugEditIdTextBox";
-            this.BugEditIdTextBox.Size = new System.Drawing.Size(100, 20);
-            this.BugEditIdTextBox.TabIndex = 22;
+            this.EditIdTextBox.Location = new System.Drawing.Point(1035, 706);
+            this.EditIdTextBox.Name = "EditIdTextBox";
+            this.EditIdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.EditIdTextBox.TabIndex = 22;
             // 
             // bugsTableAdapter
             // 
@@ -408,7 +411,7 @@
             // 
             // SaveEditButton
             // 
-            this.SaveEditButton.Location = new System.Drawing.Point(1099, 694);
+            this.SaveEditButton.Location = new System.Drawing.Point(1093, 741);
             this.SaveEditButton.Name = "SaveEditButton";
             this.SaveEditButton.Size = new System.Drawing.Size(75, 23);
             this.SaveEditButton.TabIndex = 23;
@@ -416,16 +419,26 @@
             this.SaveEditButton.UseVisualStyleBackColor = true;
             this.SaveEditButton.Click += new System.EventHandler(this.SaveEditButton_Click);
             // 
+            // ImageSelectLabel
+            // 
+            this.ImageSelectLabel.AutoSize = true;
+            this.ImageSelectLabel.Location = new System.Drawing.Point(919, 559);
+            this.ImageSelectLabel.Name = "ImageSelectLabel";
+            this.ImageSelectLabel.Size = new System.Drawing.Size(85, 13);
+            this.ImageSelectLabel.TabIndex = 24;
+            this.ImageSelectLabel.Text = "Image not select";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1725, 1017);
+            this.Controls.Add(this.ImageSelectLabel);
             this.Controls.Add(this.SaveEditButton);
-            this.Controls.Add(this.BugEditIdTextBox);
+            this.Controls.Add(this.EditIdTextBox);
             this.Controls.Add(this.BugIdEditLabel);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.IdTextBox);
+            this.Controls.Add(this.DeleteIdTextBox);
             this.Controls.Add(this.BugIdDeleteLabel);
             this.Controls.Add(this.EmployeIdTextBox);
             this.Controls.Add(this.EmployeLabel);
@@ -435,7 +448,7 @@
             this.Controls.Add(this.EditButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.ClearButton);
-            this.Controls.Add(this.LoadButton);
+            this.Controls.Add(this.LoadImageButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.BugsDataGrid);
             this.Controls.Add(this.StatusCheckBox);
@@ -473,7 +486,7 @@
         private System.Windows.Forms.CheckBox StatusCheckBox;
         private System.Windows.Forms.DataGridView BugsDataGrid;
         private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.Button LoadButton;
+        private System.Windows.Forms.Button LoadImageButton;
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Button EditButton;
@@ -483,10 +496,10 @@
         private System.Windows.Forms.Label EmployeLabel;
         private System.Windows.Forms.TextBox EmployeIdTextBox;
         private System.Windows.Forms.Label BugIdDeleteLabel;
-        private System.Windows.Forms.TextBox IdTextBox;
+        private System.Windows.Forms.TextBox DeleteIdTextBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label BugIdEditLabel;
-        private System.Windows.Forms.TextBox BugEditIdTextBox;
+        private System.Windows.Forms.TextBox EditIdTextBox;
         private BugBaseDBDataSet bugBaseDBDataSet;
         private System.Windows.Forms.BindingSource bugsBindingSource;
         private BugBaseDBDataSetTableAdapters.BugsTableAdapter bugsTableAdapter;
@@ -504,6 +517,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn professionDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button SaveEditButton;
+        private System.Windows.Forms.Label ImageSelectLabel;
     }
 }
 

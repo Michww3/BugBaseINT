@@ -77,7 +77,7 @@
     </Compile>
     <Compile Include="Helpers\DbContext.cs" />
     <Compile Include="Helpers\DbInitilize.cs" />
-    <Compile Include="Helpers\ValidData.cs" />
+    <Compile Include="Helpers\MainFormHelpers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
