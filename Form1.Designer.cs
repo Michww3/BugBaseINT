@@ -38,13 +38,6 @@
             this.EndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.StatusCheckBox = new System.Windows.Forms.CheckBox();
             this.BugsDataGrid = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priorityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.endDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isComplitedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.employeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bugsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bugBaseDBDataSet = new BugBase.BugBaseDBDataSet();
             this.SaveButton = new System.Windows.Forms.Button();
@@ -64,13 +57,19 @@
             this.EmployeIdTextBox = new System.Windows.Forms.TextBox();
             this.BugIdDeleteLabel = new System.Windows.Forms.Label();
             this.DeleteIdTextBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.BugIdEditLabel = new System.Windows.Forms.Label();
             this.EditIdTextBox = new System.Windows.Forms.TextBox();
             this.bugsTableAdapter = new BugBase.BugBaseDBDataSetTableAdapters.BugsTableAdapter();
             this.employesTableAdapter = new BugBase.BugBaseDBDataSet1TableAdapters.EmployesTableAdapter();
             this.SaveEditButton = new System.Windows.Forms.Button();
             this.ImageSelectLabel = new System.Windows.Forms.Label();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priorityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isComplitedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.employeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.BugsDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugBaseDBDataSet)).BeginInit();
@@ -148,6 +147,8 @@
             // 
             // BugsDataGrid
             // 
+            this.BugsDataGrid.AllowUserToAddRows = false;
+            this.BugsDataGrid.AllowUserToDeleteRows = false;
             this.BugsDataGrid.AutoGenerateColumns = false;
             this.BugsDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.BugsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -169,55 +170,6 @@
             this.BugsDataGrid.Size = new System.Drawing.Size(789, 1017);
             this.BugsDataGrid.TabIndex = 8;
             this.BugsDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BugsDataGrid_CellClick);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priorityDataGridViewTextBoxColumn
-            // 
-            this.priorityDataGridViewTextBoxColumn.DataPropertyName = "Priority";
-            this.priorityDataGridViewTextBoxColumn.HeaderText = "Priority";
-            this.priorityDataGridViewTextBoxColumn.Name = "priorityDataGridViewTextBoxColumn";
-            this.priorityDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // endDateDataGridViewTextBoxColumn
-            // 
-            this.endDateDataGridViewTextBoxColumn.DataPropertyName = "EndDate";
-            this.endDateDataGridViewTextBoxColumn.HeaderText = "EndDate";
-            this.endDateDataGridViewTextBoxColumn.Name = "endDateDataGridViewTextBoxColumn";
-            this.endDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // isComplitedDataGridViewCheckBoxColumn
-            // 
-            this.isComplitedDataGridViewCheckBoxColumn.DataPropertyName = "IsComplited";
-            this.isComplitedDataGridViewCheckBoxColumn.HeaderText = "IsComplited";
-            this.isComplitedDataGridViewCheckBoxColumn.Name = "isComplitedDataGridViewCheckBoxColumn";
-            this.isComplitedDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // employeIdDataGridViewTextBoxColumn
-            // 
-            this.employeIdDataGridViewTextBoxColumn.DataPropertyName = "EmployeId";
-            this.employeIdDataGridViewTextBoxColumn.HeaderText = "EmployeId";
-            this.employeIdDataGridViewTextBoxColumn.Name = "employeIdDataGridViewTextBoxColumn";
-            this.employeIdDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // bugsBindingSource
             // 
@@ -302,6 +254,8 @@
             // 
             // EmployesDataGrid
             // 
+            this.EmployesDataGrid.AllowUserToAddRows = false;
+            this.EmployesDataGrid.AllowUserToDeleteRows = false;
             this.EmployesDataGrid.AutoGenerateColumns = false;
             this.EmployesDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.EmployesDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -378,13 +332,6 @@
             this.DeleteIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.DeleteIdTextBox.TabIndex = 20;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            // 
             // BugIdEditLabel
             // 
             this.BugIdEditLabel.AutoSize = true;
@@ -428,6 +375,55 @@
             this.ImageSelectLabel.TabIndex = 24;
             this.ImageSelectLabel.Text = "Image not select";
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // priorityDataGridViewTextBoxColumn
+            // 
+            this.priorityDataGridViewTextBoxColumn.DataPropertyName = "Priority";
+            this.priorityDataGridViewTextBoxColumn.HeaderText = "Priority";
+            this.priorityDataGridViewTextBoxColumn.Name = "priorityDataGridViewTextBoxColumn";
+            this.priorityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // endDateDataGridViewTextBoxColumn
+            // 
+            this.endDateDataGridViewTextBoxColumn.DataPropertyName = "EndDate";
+            this.endDateDataGridViewTextBoxColumn.HeaderText = "EndDate";
+            this.endDateDataGridViewTextBoxColumn.Name = "endDateDataGridViewTextBoxColumn";
+            this.endDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // isComplitedDataGridViewCheckBoxColumn
+            // 
+            this.isComplitedDataGridViewCheckBoxColumn.DataPropertyName = "IsComplited";
+            this.isComplitedDataGridViewCheckBoxColumn.HeaderText = "IsComplited";
+            this.isComplitedDataGridViewCheckBoxColumn.Name = "isComplitedDataGridViewCheckBoxColumn";
+            this.isComplitedDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // employeIdDataGridViewTextBoxColumn
+            // 
+            this.employeIdDataGridViewTextBoxColumn.DataPropertyName = "EmployeId";
+            this.employeIdDataGridViewTextBoxColumn.HeaderText = "EmployeId";
+            this.employeIdDataGridViewTextBoxColumn.Name = "employeIdDataGridViewTextBoxColumn";
+            this.employeIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -437,7 +433,6 @@
             this.Controls.Add(this.SaveEditButton);
             this.Controls.Add(this.EditIdTextBox);
             this.Controls.Add(this.BugIdEditLabel);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.DeleteIdTextBox);
             this.Controls.Add(this.BugIdDeleteLabel);
             this.Controls.Add(this.EmployeIdTextBox);
@@ -497,19 +492,11 @@
         private System.Windows.Forms.TextBox EmployeIdTextBox;
         private System.Windows.Forms.Label BugIdDeleteLabel;
         private System.Windows.Forms.TextBox DeleteIdTextBox;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label BugIdEditLabel;
         private System.Windows.Forms.TextBox EditIdTextBox;
         private BugBaseDBDataSet bugBaseDBDataSet;
         private System.Windows.Forms.BindingSource bugsBindingSource;
         private BugBaseDBDataSetTableAdapters.BugsTableAdapter bugsTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priorityDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn endDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isComplitedDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employeIdDataGridViewTextBoxColumn;
         private BugBaseDBDataSet1 bugBaseDBDataSet1;
         private System.Windows.Forms.BindingSource employesBindingSource;
         private BugBaseDBDataSet1TableAdapters.EmployesTableAdapter employesTableAdapter;
@@ -518,6 +505,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn professionDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button SaveEditButton;
         private System.Windows.Forms.Label ImageSelectLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priorityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn endDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isComplitedDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn employeIdDataGridViewTextBoxColumn;
     }
 }
 

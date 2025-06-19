@@ -30,6 +30,8 @@ namespace BugBase
             EmployeIdTextBox.Text = string.Empty;
             imageString = null;
             ImageSelectLabel.Text = "Image not select";
+            DeleteIdTextBox.Text = string.Empty;
+            EditIdTextBox.Text = string.Empty;
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -61,15 +63,32 @@ namespace BugBase
 
         private void EmployesDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = EmployesDataGrid.Rows[e.RowIndex];
-            string value = row.Cells[0].Value?.ToString();
+            string value;
+            try
+            {
+                DataGridViewRow row = EmployesDataGrid.Rows[e.RowIndex];
+                value = row.Cells[0].Value?.ToString();
+
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return;
+            }
             EmployeIdTextBox.Text = value;
         }
 
         private void BugsDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = BugsDataGrid.Rows[e.RowIndex];
-            string value = row.Cells[0].Value?.ToString();
+            string value;
+            try
+            {
+                DataGridViewRow row = BugsDataGrid.Rows[e.RowIndex];
+                value = row.Cells[0].Value?.ToString();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return;
+            }
             DeleteIdTextBox.Text = value;
             EditIdTextBox.Text = value;
         }
