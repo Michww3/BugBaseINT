@@ -96,17 +96,17 @@ namespace BugBase.Helpers
             }
         }
 
-        public static void EditBug(TextBox editIdTextBox, TextBox textBoxName, RichTextBox textBoxDescription, ComboBox comboBoxPriority, DateTimePicker dateTimePicker, CheckBox checkBoxStatus, TextBox textBoxId,Label imageSelectLabel, string imageString)
+        public static string EditBug(TextBox editIdTextBox, TextBox textBoxName, RichTextBox textBoxDescription, ComboBox comboBoxPriority, DateTimePicker dateTimePicker, CheckBox checkBoxStatus, TextBox textBoxId, Label imageSelectLabel, string imageString)
         {
             if (String.IsNullOrEmpty(editIdTextBox.Text))
             {
                 MessageBox.Show("Enter Id");
-                return;
+                return null;
             }
             if (!int.TryParse(editIdTextBox.Text, out int Id))
             {
                 MessageBox.Show("Incorrect bug Id");
-                return;
+                return null;
             }
             using (AppDbContext context = new AppDbContext())
             {
@@ -122,7 +122,9 @@ namespace BugBase.Helpers
                 checkBoxStatus.Checked = bug.IsComplited;
                 textBoxId.Text = bug.EmployeId.ToString();
                 imageString = bug.Base64Image;
-                imageSelectLabel.Text = "Image select";
+                if (imageString != null)
+                    imageSelectLabel.Text = "Image select";
+                return imageString;
             }
         }
 

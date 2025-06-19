@@ -40,7 +40,7 @@ namespace BugBase
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            MainFormHelpers.EditBug(EditIdTextBox, NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, ImageSelectLabel, imageString);
+            imageString = MainFormHelpers.EditBug(EditIdTextBox, NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, ImageSelectLabel, imageString);
         }
 
         private void SaveEditButton_Click(object sender, EventArgs e)
