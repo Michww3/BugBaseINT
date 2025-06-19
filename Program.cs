@@ -13,7 +13,6 @@ namespace BugBase
         [STAThread]
         static void Main()
         {
-            // 👉 Set your custom initializer here
             //Database.SetInitializer(new DbInitilize());
 
             //using (var context = new AppDbContext())

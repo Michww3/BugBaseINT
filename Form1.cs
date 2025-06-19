@@ -1,6 +1,5 @@
 ﻿using BugBase.Helpers;
 using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace BugBase
@@ -15,23 +14,14 @@ namespace BugBase
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            MainFormHelpers.AddBug(NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, imageString);
+            MainFormHelpers.AddBug(NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, ImageSelectLabel, imageString);
             Form1_Load(sender, e);
-            ClearButton_Click(sender, e);
+            //ClearButton_Click(sender, e);
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            NameTextBox.Text = string.Empty;
-            DescriptionTextBox.Text = string.Empty;
-            PriorityComboBox.Text = string.Empty;
-            EndDatePicker.Value = DateTime.Now;
-            StatusCheckBox.Checked = false;
-            EmployeIdTextBox.Text = string.Empty;
-            imageString = null;
-            ImageSelectLabel.Text = "Image not select";
-            DeleteIdTextBox.Text = string.Empty;
-            EditIdTextBox.Text = string.Empty;
+            MainFormHelpers.ClearUserData(NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, imageString, ImageSelectLabel, DeleteIdTextBox, EditIdTextBox);
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -48,7 +38,6 @@ namespace BugBase
         private void SaveEditButton_Click(object sender, EventArgs e)
         {
             MainFormHelpers.SaveEditBug(EditIdTextBox, NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, ImageSelectLabel, imageString);
-            ClearButton_Click(sender, e);
             Form1_Load(sender, e);
         }
 
