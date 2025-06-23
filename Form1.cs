@@ -39,7 +39,6 @@ namespace BugBase
             {
                 var row = EmployesDataGrid.Rows[e.RowIndex];
                 value = row.Cells[0].Value?.ToString();
-
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -60,7 +59,7 @@ namespace BugBase
             if (string.IsNullOrEmpty(filterText))
                 employesBindingSource.RemoveFilter();
             else
-                employesBindingSource.Filter = $"Name LIKE '%{filterText}%'";
+                employesBindingSource.Filter = $"Name LIKE '%{filterText}%' OR Profession LIKE '%{filterText}%'";
         }
 
         private void BugsDataGrid_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)

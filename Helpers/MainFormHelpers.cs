@@ -15,15 +15,13 @@ namespace BugBase.Helpers
             var priority = comboBoxPriority.Text;
             var end = dateTimePicker.Value;
             var isComplete = checkBoxStatus.Checked;
+            if (!CheckData(name, description, priority, end))
+                return;
             if (!int.TryParse(textBoxId.Text, out int employeId))
             {
                 MessageBox.Show("Incorrect employe Id");
                 return;
             }
-
-            if (!CheckData(name, description, priority, end))
-                return;
-
             using (AppDbContext context = new AppDbContext())
             {
                 var employe = context.Employes.Find(employeId);
@@ -77,22 +75,22 @@ namespace BugBase.Helpers
             if (String.IsNullOrEmpty(name))
             {
                 MessageBox.Show("Name must be select");
-                valid = false;
+                return false;
             }
             if (String.IsNullOrEmpty(description))
             {
                 MessageBox.Show("Description must be select");
-                valid = false;
+                return false;
             }
             if (String.IsNullOrEmpty(priority))
             {
                 MessageBox.Show("Priority must be select");
-                valid = false;
+                return false;
             }
             if (dateTime < DateTime.Now)
             {
                 MessageBox.Show("End date must be correct");
-                valid = false;
+                return false;
             }
             return valid;
         }

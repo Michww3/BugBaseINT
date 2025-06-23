@@ -233,7 +233,7 @@
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SaveButton.Location = new System.Drawing.Point(836, 932);
+            this.SaveButton.Location = new System.Drawing.Point(858, 932);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(159, 63);
             this.SaveButton.TabIndex = 9;
@@ -256,7 +256,7 @@
             // 
             this.ClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ClearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ClearButton.Location = new System.Drawing.Point(1051, 932);
+            this.ClearButton.Location = new System.Drawing.Point(1058, 932);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(150, 63);
             this.ClearButton.TabIndex = 11;
@@ -275,6 +275,7 @@
             // 
             // PriorityComboBox
             // 
+            this.PriorityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.PriorityComboBox.FormattingEnabled = true;
             this.PriorityComboBox.Items.AddRange(new object[] {
             "low",
@@ -384,9 +385,9 @@
             this.EmployeFilteLabel.AutoSize = true;
             this.EmployeFilteLabel.Location = new System.Drawing.Point(1064, 3);
             this.EmployeFilteLabel.Name = "EmployeFilteLabel";
-            this.EmployeFilteLabel.Size = new System.Drawing.Size(84, 13);
+            this.EmployeFilteLabel.Size = new System.Drawing.Size(83, 13);
             this.EmployeFilteLabel.TabIndex = 27;
-            this.EmployeFilteLabel.Text = "Search by name";
+            this.EmployeFilteLabel.Text = "Search employe";
             // 
             // LoadDataButton
             // 
