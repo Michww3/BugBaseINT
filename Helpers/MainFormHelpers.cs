@@ -1,5 +1,6 @@
 ﻿using BugBase.DTOs;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -7,7 +8,7 @@ namespace BugBase.Helpers
 {
     public static class MainFormHelpers
     {
-        public static void AddBug(TextBox textBoxName, RichTextBox textBoxDescription, ComboBox comboBoxPriority, DateTimePicker dateTimePicker, CheckBox checkBoxStatus, TextBox textBoxId,Label imageLabel, string imageString)
+        public static void AddBug(TextBox textBoxName, RichTextBox textBoxDescription, ComboBox comboBoxPriority, DateTimePicker dateTimePicker, CheckBox checkBoxStatus, TextBox textBoxId, string imageString, PictureBox pictureBox)
         {
             var name = textBoxName.Text;
             var description = textBoxDescription.Text;
@@ -32,13 +33,13 @@ namespace BugBase.Helpers
                     return;
                 }
                 Bug bug = new Bug(name, description, priority, end, isComplete, employeId);
-                bug.Base64Image = imageString ?? null;
+                bug.Base64Image = imageString;
                 context.Bugs.Add(bug);
                 context.SaveChanges();
-                ClearUserData(textBoxName, textBoxDescription, comboBoxPriority, dateTimePicker, checkBoxStatus, textBoxId, imageString);
+                ClearUserData(textBoxName, textBoxDescription, comboBoxPriority, dateTimePicker, checkBoxStatus, textBoxId, imageString, pictureBox);
             }
         }
-        public static string LoadImageAsBase64(Label imageSelectLabel)
+        public static string LoadImageAsBase64(PictureBox imagePictureBox)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -46,27 +47,16 @@ namespace BugBase.Helpers
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    byte[] imageBytes = File.ReadAllBytes(openFileDialog.FileName);
-                    imageSelectLabel.Text = "Image select";
-                    return Convert.ToBase64String(imageBytes); // преобразуем в Base64
+                    var imageBytes = File.ReadAllBytes(openFileDialog.FileName);
+                    imagePictureBox.Image = Image.FromFile(openFileDialog.FileName); ;
+                    return Convert.ToBase64String(imageBytes);
                 }
             }
-            imageSelectLabel.Text = "Image not select";
             return null;
         }
 
-        public static void DeleteBug(TextBox deleteIdTextBox)
+        public static void DeleteBug(int bugId)
         {
-            if (String.IsNullOrEmpty(deleteIdTextBox.Text))
-            {
-                MessageBox.Show("Enter Id");
-                return;
-            }
-            if (!int.TryParse(deleteIdTextBox.Text, out int bugId))
-            {
-                MessageBox.Show("Incorrect Id");
-                return;
-            }
             using (AppDbContext context = new AppDbContext())
             {
                 var bug = context.Bugs.Find(bugId);
@@ -79,84 +69,12 @@ namespace BugBase.Helpers
 
                 context.Bugs.Remove(bug);
                 context.SaveChanges();
-
-                //MessageBox.Show("Deleting complete");
             }
         }
-
-        public static string EditBug(TextBox editIdTextBox, TextBox textBoxName, RichTextBox textBoxDescription, ComboBox comboBoxPriority, DateTimePicker dateTimePicker, CheckBox checkBoxStatus, TextBox textBoxId, Label imageSelectLabel, string imageString)
-        {
-            if (String.IsNullOrEmpty(editIdTextBox.Text))
-            {
-                MessageBox.Show("Enter Id");
-                return null;
-            }
-            if (!int.TryParse(editIdTextBox.Text, out int Id))
-            {
-                MessageBox.Show("Incorrect bug Id");
-                return null;
-            }
-            using (AppDbContext context = new AppDbContext())
-            {
-                var bug = context.Bugs.Find(Id);
-                if (bug == null)
-                {
-                    MessageBox.Show("No bug with this Id");
-                }
-                textBoxName.Text = bug.Name;
-                textBoxDescription.Text = bug.Description;
-                comboBoxPriority.Text = bug.Priority;
-                dateTimePicker.Value = bug.EndDate;
-                checkBoxStatus.Checked = bug.IsComplited;
-                textBoxId.Text = bug.EmployeId.ToString();
-                imageString = bug.Base64Image;
-                if (imageString != null)
-                    imageSelectLabel.Text = "Image select";
-                return imageString;
-            }
-        }
-
-        public static void SaveEditBug(TextBox editIdTextBox, TextBox textBoxName, RichTextBox textBoxDescription, ComboBox comboBoxPriority, DateTimePicker dateTimePicker, CheckBox checkBoxStatus, TextBox textBoxId, Label imageSelectLabel, string imageString)
-        {
-            if (String.IsNullOrEmpty(editIdTextBox.Text))
-            {
-                MessageBox.Show("Enter Id");
-                return;
-            }
-            if (!int.TryParse(editIdTextBox.Text, out int Id))
-            {
-                MessageBox.Show("Incorrect bug Id");
-                return;
-            }
-            using (AppDbContext context = new AppDbContext())
-            {
-                var bug = context.Bugs.Find(Id);
-                if (bug == null)
-                {
-                    MessageBox.Show("No bug with this Id");
-                    return;
-                }
-                bug.Name = textBoxName.Text;
-                bug.Description = textBoxDescription.Text;
-                bug.Priority = comboBoxPriority.Text;
-                bug.EndDate = dateTimePicker.Value;
-                bug.IsComplited = checkBoxStatus.Checked;
-                bug.Base64Image = imageString;
-                if (!int.TryParse(textBoxId.Text, out int employeId))
-                {
-                    MessageBox.Show("Incorrect employe Id");
-                    return;
-                }
-                bug.EmployeId = employeId;
-                context.SaveChanges();
-            }
-            ClearUserData(textBoxName, textBoxDescription, comboBoxPriority, dateTimePicker, checkBoxStatus, textBoxId, imageString, imageSelectLabel);
-        }
-
         private static bool CheckData(string name, string description, string priority, DateTime dateTime)
         {
             var valid = true;
-            if(String.IsNullOrEmpty(name))
+            if (String.IsNullOrEmpty(name))
             {
                 MessageBox.Show("Name must be select");
                 valid = false;
@@ -179,7 +97,7 @@ namespace BugBase.Helpers
             return valid;
         }
 
-        public static void ClearUserData(TextBox nameTextBox, RichTextBox descriptionTextBox, ComboBox priorityComboBox, DateTimePicker endDatePicker, CheckBox statusCheckBox, TextBox employeIdTextBox, string imageString)
+        public static void ClearUserData(TextBox nameTextBox, RichTextBox descriptionTextBox, ComboBox priorityComboBox, DateTimePicker endDatePicker, CheckBox statusCheckBox, TextBox employeIdTextBox, string imageString, PictureBox imagePictureBox)
         {
             nameTextBox.Text = string.Empty;
             descriptionTextBox.Text = string.Empty;
@@ -188,30 +106,179 @@ namespace BugBase.Helpers
             statusCheckBox.Checked = false;
             employeIdTextBox.Text = string.Empty;
             imageString = null;
+            imagePictureBox.Image = null;
         }
-        public static void ClearUserData(TextBox nameTextBox, RichTextBox descriptionTextBox, ComboBox priorityComboBox, DateTimePicker endDatePicker, CheckBox statusCheckBox, TextBox employeIdTextBox, string imageString, Label imageLabel)
+        public static void CellVaildate(DataGridView BugsDataGrid, DataGridViewCellValidatingEventArgs e)
         {
-            nameTextBox.Text = string.Empty;
-            descriptionTextBox.Text = string.Empty;
-            priorityComboBox.Text = string.Empty;
-            endDatePicker.Value = DateTime.Now;
-            statusCheckBox.Checked = false;
-            employeIdTextBox.Text = string.Empty;
-            imageString = null;
-            imageLabel.Text = "Image not select";
+            if (BugsDataGrid.Columns[e.ColumnIndex].Name == "nameDataGridViewTextBoxColumn")
+            {
+                var newValue = e.FormattedValue.ToString();
+
+                if (string.IsNullOrWhiteSpace(newValue))
+                {
+                    MessageBox.Show("Поле не может быть пустым.");
+                    e.Cancel = true;
+                    BugsDataGrid.Rows[e.RowIndex].ErrorText = "Имя не может быть пустым";
+                }
+            }
+
+            if (BugsDataGrid.Columns[e.ColumnIndex].Name == "descriptionDataGridViewTextBoxColumn")
+            {
+                var newValue = e.FormattedValue.ToString();
+
+                if (string.IsNullOrWhiteSpace(newValue))
+                {
+                    MessageBox.Show("Поле не может быть пустым.");
+                    e.Cancel = true;
+                    BugsDataGrid.Rows[e.RowIndex].ErrorText = "Описание не может быть пустым";
+                }
+            }
+
+            if (BugsDataGrid.Columns[e.ColumnIndex].Name == "priorityDataGridViewTextBoxColumn")
+            {
+                var newValue = e.FormattedValue.ToString();
+
+                if (string.IsNullOrWhiteSpace(newValue))
+                {
+                    MessageBox.Show("Поле не может быть пустым.");
+                    e.Cancel = true;
+                    BugsDataGrid.Rows[e.RowIndex].ErrorText = "Приоритет не может быть пустым";
+                    return;
+                }
+                if (newValue != "low" && newValue != "medium" && newValue != "high")
+                {
+                    MessageBox.Show("Enter a valid priority(low, medium or high)");
+                    e.Cancel = true;
+                    BugsDataGrid.Rows[e.RowIndex].ErrorText = "Enter a valid priority(low, medium or high)";
+                }
+            }
+
+            if (BugsDataGrid.Columns[e.ColumnIndex].Name == "endDateDataGridViewTextBoxColumn")
+            {
+                var newValue = e.FormattedValue.ToString();
+                DateTime endDate;
+
+                if (string.IsNullOrWhiteSpace(newValue))
+                {
+                    MessageBox.Show("End date not be null");
+                    e.Cancel = true;
+                    BugsDataGrid.Rows[e.RowIndex].ErrorText = "End date not be null";
+                    return;
+                }
+                if (!DateTime.TryParse(newValue, out endDate))
+                {
+                    MessageBox.Show("Date not in correct format");
+                    e.Cancel = true;
+                    BugsDataGrid.Rows[e.RowIndex].ErrorText = "Date not in correct format";
+                    return;
+                }
+                if (endDate <= DateTime.Now)
+                {
+                    MessageBox.Show("Enter a correct end date");
+                    e.Cancel = true;
+                    BugsDataGrid.Rows[e.RowIndex].ErrorText = "Enter a correct end date";
+                }
+            }
+
+            if (BugsDataGrid.Columns[e.ColumnIndex].Name == "employeIdDataGridViewTextBoxColumn")
+            {
+                string newValue = e.FormattedValue.ToString();
+                int employeId;
+
+                if (string.IsNullOrWhiteSpace(newValue))
+                {
+                    MessageBox.Show("Employe id not be null");
+                    e.Cancel = true;
+                    BugsDataGrid.Rows[e.RowIndex].ErrorText = "Employe id not be null";
+                    return;
+                }
+                if (!Int32.TryParse(newValue, out employeId))
+                {
+                    MessageBox.Show("Employe id not in correct format");
+                    e.Cancel = true;
+                    BugsDataGrid.Rows[e.RowIndex].ErrorText = "Employe id not in correct format";
+                    return;
+                }
+                using (var context = new AppDbContext())
+                {
+                    var employe = context.Employes.Find(employeId);
+                    if (employe == null)
+                    {
+                        MessageBox.Show("No employe with this id");
+                        e.Cancel = true;
+                        BugsDataGrid.Rows[e.RowIndex].ErrorText = "No employe with this id";
+                    }
+                }
+            }
         }
-        public static void ClearUserData(TextBox nameTextBox, RichTextBox descriptionTextBox, ComboBox priorityComboBox, DateTimePicker endDatePicker, CheckBox statusCheckBox, TextBox employeIdTextBox, string imageString, Label imageLabel, TextBox deleteIdTextBox, TextBox editIdTextBox)
+        public static void DatagridMouseDown(DataGridView BugsDataGrid, DataGridViewCellMouseEventArgs e)
         {
-            nameTextBox.Text = string.Empty;
-            descriptionTextBox.Text = string.Empty;
-            priorityComboBox.Text = string.Empty;
-            endDatePicker.Value = DateTime.Now;
-            statusCheckBox.Checked = false;
-            employeIdTextBox.Text = string.Empty;
-            imageString = null;
-            imageLabel.Text = "Image not select";
-            deleteIdTextBox.Text = string.Empty;
-            editIdTextBox.Text = string.Empty;
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
+            {
+                BugsDataGrid.ClearSelection();
+                BugsDataGrid.Rows[e.RowIndex].Selected = true;
+
+                var bugId = Convert.ToInt32(BugsDataGrid.Rows[e.RowIndex].Cells[0].Value);
+
+                var confirmResult = MessageBox.Show("Удалить запись с Id = " + bugId + "?",
+                                                    "Подтвердите удаление",
+                                                    MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    DeleteBug(bugId);
+                }
+            }
+        }
+        public static void LoadData(TextBox bugIdTextBox, TextBox nameTextBox, RichTextBox descriptionTextBox, ComboBox priorityComboBox, DateTimePicker emdDatePicker, CheckBox statusCheckBox, TextBox employeIdTextBox, PictureBox imagePictureBox)
+        {
+            if (String.IsNullOrEmpty(bugIdTextBox.Text))
+            {
+                MessageBox.Show("Enter a bug id to view data");
+                return;
+            }
+            if (!Int32.TryParse(bugIdTextBox.Text, out var bugId))
+            {
+                MessageBox.Show("Bug id not in correct format");
+                return;
+            }
+            using (var context = new AppDbContext())
+            {
+                var bug = context.Bugs.Find(bugId);
+                if (bug == null)
+                {
+                    MessageBox.Show($"No bug with this id");
+                    return;
+                }
+
+                nameTextBox.Text = bug.Name;
+                descriptionTextBox.Text = bug.Description;
+                priorityComboBox.Text = bug.Priority;
+                emdDatePicker.Value = bug.EndDate;
+                statusCheckBox.Checked = bug.IsComplited;
+                employeIdTextBox.Text = bug.EmployeId.ToString();
+                LoadBase64ImageToPictureBox(bug.Base64Image, imagePictureBox);
+            }
+        }
+        public static void LoadBase64ImageToPictureBox(string base64String, PictureBox pictureBox)
+        {
+            if (string.IsNullOrWhiteSpace(base64String))
+            {
+                pictureBox.Image = null;
+                return;
+            }
+
+            try
+            {
+                var imageBytes = Convert.FromBase64String(base64String);
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    pictureBox.Image = Image.FromStream(ms);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка загрузки изображения: " + ex.Message);
+            }
         }
     }
 }

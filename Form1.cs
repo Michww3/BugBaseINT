@@ -7,6 +7,7 @@ namespace BugBase
     public partial class Form1 : Form
     {
         private string imageString;
+
         public Form1()
         {
             InitializeComponent();
@@ -14,31 +15,13 @@ namespace BugBase
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            MainFormHelpers.AddBug(NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, ImageSelectLabel, imageString);
+            MainFormHelpers.AddBug(NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, imageString, ImagePictureBox);
             Form1_Load(sender, e);
-            //ClearButton_Click(sender, e);
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            MainFormHelpers.ClearUserData(NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, imageString, ImageSelectLabel, DeleteIdTextBox, EditIdTextBox);
-        }
-
-        private void DeleteButton_Click(object sender, EventArgs e)
-        {
-            MainFormHelpers.DeleteBug(DeleteIdTextBox);
-            Form1_Load(sender, e);
-        }
-
-        private void EditButton_Click(object sender, EventArgs e)
-        {
-            imageString = MainFormHelpers.EditBug(EditIdTextBox, NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, ImageSelectLabel, imageString);
-        }
-
-        private void SaveEditButton_Click(object sender, EventArgs e)
-        {
-            MainFormHelpers.SaveEditBug(EditIdTextBox, NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, ImageSelectLabel, imageString);
-            Form1_Load(sender, e);
+            MainFormHelpers.ClearUserData(NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, imageString, ImagePictureBox);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -47,7 +30,6 @@ namespace BugBase
             this.employesTableAdapter.Fill(this.bugBaseDBDataSet1.Employes);
             // TODO: This line of code loads data into the 'bugBaseDBDataSet.Bugs' table. You can move, or remove it, as needed.
             this.bugsTableAdapter.Fill(this.bugBaseDBDataSet.Bugs);
-
         }
 
         private void EmployesDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -55,7 +37,7 @@ namespace BugBase
             string value;
             try
             {
-                DataGridViewRow row = EmployesDataGrid.Rows[e.RowIndex];
+                var row = EmployesDataGrid.Rows[e.RowIndex];
                 value = row.Cells[0].Value?.ToString();
 
             }
@@ -66,25 +48,54 @@ namespace BugBase
             EmployeIdTextBox.Text = value;
         }
 
-        private void BugsDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string value;
-            try
-            {
-                DataGridViewRow row = BugsDataGrid.Rows[e.RowIndex];
-                value = row.Cells[0].Value?.ToString();
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                return;
-            }
-            DeleteIdTextBox.Text = value;
-            EditIdTextBox.Text = value;
-        }
-
         private void LoadImageButton_Click(object sender, EventArgs e)
         {
-            imageString = MainFormHelpers.LoadImageAsBase64(ImageSelectLabel);
+            imageString = MainFormHelpers.LoadImageAsBase64(ImagePictureBox);
+        }
+
+        private void TextBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            var filterText = EmployeFilterTextbox.Text.Trim();
+
+            if (string.IsNullOrEmpty(filterText))
+                employesBindingSource.RemoveFilter();
+            else
+                employesBindingSource.Filter = $"Name LIKE '%{filterText}%'";
+        }
+
+        private void BugsDataGrid_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            MainFormHelpers.DatagridMouseDown(BugsDataGrid, e);
+            Form1_Load(sender, e);
+        }
+
+        private void BugsDataGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            this.Validate();
+            bugsBindingSource.EndEdit();
+            bugsTableAdapter.Update(bugBaseDBDataSet.Bugs);
+        }
+        private void BugsDataGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            MainFormHelpers.CellVaildate(BugsDataGrid, e);
+        }
+        private void BugsDataGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            BugsDataGrid.Rows[e.RowIndex].ErrorText = string.Empty;
+        }
+
+        private void LoadDataButton_Click(object sender, EventArgs e)
+        {
+            MainFormHelpers.LoadData(BugIdTextBox, NameTextBox, DescriptionTextBox, PriorityComboBox, EndDatePicker, StatusCheckBox, EmployeIdTextBox, ImagePictureBox);
+        }
+
+        private void BugsDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = BugsDataGrid.Rows[e.RowIndex];
+                BugIdTextBox.Text = row.Cells["idDataGridViewTextBoxColumn"].Value?.ToString();
+            }
         }
     }
 }
