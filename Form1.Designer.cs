@@ -68,6 +68,7 @@
             this.LoadDataButton = new System.Windows.Forms.Button();
             this.BugIdLabel = new System.Windows.Forms.Label();
             this.BugIdTextBox = new System.Windows.Forms.TextBox();
+            this.ChangeImageButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BugsDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugBaseDBDataSet)).BeginInit();
@@ -391,7 +392,7 @@
             // 
             this.LoadDataButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LoadDataButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LoadDataButton.Location = new System.Drawing.Point(836, 863);
+            this.LoadDataButton.Location = new System.Drawing.Point(809, 863);
             this.LoadDataButton.Name = "LoadDataButton";
             this.LoadDataButton.Size = new System.Drawing.Size(159, 63);
             this.LoadDataButton.TabIndex = 28;
@@ -403,7 +404,7 @@
             // 
             this.BugIdLabel.AutoSize = true;
             this.BugIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BugIdLabel.Location = new System.Drawing.Point(1073, 863);
+            this.BugIdLabel.Location = new System.Drawing.Point(1006, 863);
             this.BugIdLabel.Name = "BugIdLabel";
             this.BugIdLabel.Size = new System.Drawing.Size(54, 20);
             this.BugIdLabel.TabIndex = 29;
@@ -412,16 +413,28 @@
             // BugIdTextBox
             // 
             this.BugIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BugIdTextBox.Location = new System.Drawing.Point(1051, 895);
+            this.BugIdTextBox.Location = new System.Drawing.Point(987, 894);
             this.BugIdTextBox.Name = "BugIdTextBox";
             this.BugIdTextBox.Size = new System.Drawing.Size(100, 26);
             this.BugIdTextBox.TabIndex = 30;
+            // 
+            // ChangeImageButton
+            // 
+            this.ChangeImageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ChangeImageButton.Location = new System.Drawing.Point(1106, 863);
+            this.ChangeImageButton.Name = "ChangeImageButton";
+            this.ChangeImageButton.Size = new System.Drawing.Size(139, 63);
+            this.ChangeImageButton.TabIndex = 31;
+            this.ChangeImageButton.Text = "Change image";
+            this.ChangeImageButton.UseVisualStyleBackColor = true;
+            this.ChangeImageButton.Click += new System.EventHandler(this.ChangeImageButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1725, 1017);
+            this.Controls.Add(this.ChangeImageButton);
             this.Controls.Add(this.BugIdTextBox);
             this.Controls.Add(this.BugIdLabel);
             this.Controls.Add(this.LoadDataButton);
@@ -501,6 +514,7 @@
         private System.Windows.Forms.Button LoadDataButton;
         private System.Windows.Forms.Label BugIdLabel;
         private System.Windows.Forms.TextBox BugIdTextBox;
+        private System.Windows.Forms.Button ChangeImageButton;
     }
 }
 

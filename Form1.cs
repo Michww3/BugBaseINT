@@ -50,7 +50,7 @@ namespace BugBase
 
         private void LoadImageButton_Click(object sender, EventArgs e)
         {
-            imageString = MainFormHelpers.LoadImageAsBase64(ImagePictureBox);
+            imageString = MainFormHelpers.LoadImageToPictureBox(ImagePictureBox);
         }
 
         private void TextBoxFilter_TextChanged(object sender, EventArgs e)
@@ -96,6 +96,11 @@ namespace BugBase
                 DataGridViewRow row = BugsDataGrid.Rows[e.RowIndex];
                 BugIdTextBox.Text = row.Cells["idDataGridViewTextBoxColumn"].Value?.ToString();
             }
+        }
+
+        private void ChangeImageButton_Click(object sender, EventArgs e)
+        {
+            MainFormHelpers.ChangeImage(BugIdTextBox);
         }
     }
 }

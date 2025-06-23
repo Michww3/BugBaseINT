@@ -39,7 +39,7 @@ namespace BugBase.Helpers
                 ClearUserData(textBoxName, textBoxDescription, comboBoxPriority, dateTimePicker, checkBoxStatus, textBoxId, imageString, pictureBox);
             }
         }
-        public static string LoadImageAsBase64(PictureBox imagePictureBox)
+        public static string LoadImageToPictureBox(PictureBox imagePictureBox)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -108,6 +108,7 @@ namespace BugBase.Helpers
             imageString = null;
             imagePictureBox.Image = null;
         }
+
         public static void CellVaildate(DataGridView BugsDataGrid, DataGridViewCellValidatingEventArgs e)
         {
             if (BugsDataGrid.Columns[e.ColumnIndex].Name == "nameDataGridViewTextBoxColumn")
@@ -278,6 +279,39 @@ namespace BugBase.Helpers
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка загрузки изображения: " + ex.Message);
+            }
+        }
+        public static void ChangeImage(TextBox bugIdTextBox)
+        {
+            if (String.IsNullOrEmpty(bugIdTextBox.Text))
+            {
+                MessageBox.Show("Enter a bug id to view data");
+                return;
+            }
+            if (!Int32.TryParse(bugIdTextBox.Text, out var bugId))
+            {
+                MessageBox.Show("Bug id not in correct format");
+                return;
+            }
+            using (var context = new AppDbContext())
+            {
+                var bug = context.Bugs.Find(bugId);
+                if (bug == null)
+                {
+                    MessageBox.Show($"No bug with this id");
+                    return;
+                }
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        var imageBytes = File.ReadAllBytes(openFileDialog.FileName);
+                        bug.Base64Image = Convert.ToBase64String(imageBytes);
+                        context.SaveChanges();
+                    }
+                }
             }
         }
     }
